@@ -1,13 +1,16 @@
 #FROM hub.opensciencegrid.org/opensciencegrid/cms-xcache:release
-FROM hub.opensciencegrid.org/opensciencegrid/cms-xcache:release-20220102-0737 AS base
+FROM hub.opensciencegrid.org/opensciencegrid/cms-xcache:3.6-release-20221211-0739 AS base
 
-RUN yum --enablerepo=osg-upcoming-testing update -y \
-        xrootd && \
+#COPY xrootd.repo /etc/yum.repos.d/
+
+RUN \
+    yum update xrootd -y --enablerepo=osg-development && \
     yum clean all --enablerepo=* && rm -rf /var/cache/
 
 FROM base AS builder
 
-RUN yum install -y --enablerepo=osg-upcoming-testing \
+#COPY xrootd.repo /etc/yum.repos.d/
+RUN yum install -y --enablerepo=osg-development \
         cmake git gcc-c++ xrootd-client-devel && \
     git clone https://github.com/bbockelm/xrdcl-authz-plugin.git && \
     mkdir xrdcl-authz-plugin/build && \
