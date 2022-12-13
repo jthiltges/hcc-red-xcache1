@@ -1,6 +1,6 @@
 version: '2'
 services:
-  red-xcache-test:
+  red-xcache:
     build: .
     volumes:
      - /etc/grid-security/red-xcache1-hostcert.pem:/etc/grid-security/hostcert.pem:ro
