@@ -11,6 +11,9 @@ services:
     env_file: /root/red-xcache/envfile
     # Allow gdb inside
     privileged: true
-    ports:
-    - "1094:1094"
+    restart: unless-stopped
+    # Switch to host-mode networking for now
+    #ports:
+    #- "1094:1094"
+    network_mode: host
 

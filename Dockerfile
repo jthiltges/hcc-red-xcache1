@@ -1,5 +1,5 @@
 #FROM hub.opensciencegrid.org/opensciencegrid/cms-xcache:release
-FROM hub.opensciencegrid.org/opensciencegrid/cms-xcache:3.6-release-20230302-2136
+FROM hub.opensciencegrid.org/opensciencegrid/cms-xcache:3.6-release-20230409-0737
 
 RUN sed -i /etc/xrootd/config.d/30-cms-xcache-authz.cfg -e 's|sec.protbind \* gsi||' && \
     mkdir /cache
