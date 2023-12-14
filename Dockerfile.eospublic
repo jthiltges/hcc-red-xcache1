@@ -1,0 +1,4 @@
+FROM hub.opensciencegrid.org/opensciencegrid/stash-cache:3.6-release-20230720-1810
+
+RUN    rm /etc/supervisord.d/11-stash-cache-auth.conf \
+    && sed -i /etc/xrootd/config.d/40-stash-cache-plugin.cfg -e 's|pss.origin redirector.osgstorage.org|pss.origin eospublic.cern.ch|'

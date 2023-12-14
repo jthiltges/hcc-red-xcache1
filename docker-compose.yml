@@ -6,7 +6,7 @@ services:
      - /etc/grid-security/red-xcache1-hostcert.pem:/etc/grid-security/hostcert.pem:ro
      - /etc/grid-security/red-xcache1-hostkey.pem:/etc/grid-security/hostkey.pem:ro
      - /etc/xrootd/cache-disks.config:/etc/xrootd/cache-disks.config:ro
-     - /cache:/cache
+     - /cache/cms:/cache
      - /etc/xrootd/macaroon-secret:/etc/xrootd/macaroon-secret:ro
     env_file: /root/red-xcache/envfile
     # Allow gdb inside
@@ -17,3 +17,12 @@ services:
     #- "1094:1094"
     network_mode: host
 
+  eospublic-xcache:
+    build:
+      context: .
+      dockerfile: Dockerfile.eospublic
+    restart: unless-stopped
+    volumes:
+      - /cache/eospublic:/xcache
+    ports:
+    - "1096:1094"
